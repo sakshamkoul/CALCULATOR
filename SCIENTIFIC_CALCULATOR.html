@@ -1,0 +1,231 @@
+<!doctype html>
+<head>
+<title> CALCULATOR </title>
+
+<style>
+*{
+ margin: 0px;
+ padding: 0px;
+ }
+
+.button
+{
+width : 50px;
+height: 50px;
+font-size: 25px;
+margin: 2px;
+cursor: pointer;
+background : white;
+border : none;
+color : black;
+}
+
+
+.textview
+{
+width : 204px;
+height : 32px;
+margin: 5px;
+font-size: 25px;
+padding: 5px;	
+}
+
+.main
+{
+position : absolute;
+top : 50%;
+left : 50%;
+transform : translateX(-50%)translateY(-50%); 
+}
+
+body
+{
+	background-image : url('C://Users//SAKSHAM//Desktop//A.jpg');
+
+}
+
+.divbmi
+{
+position : absolute;
+top : 50%;
+left : 70%;
+transform : translateX(-50%)translateY(-50%); 
+}
+
+.bmitheory
+{
+position : absolute;
+top : 50%;
+left : 30%;
+transform : translateX(-50%)translateY(-50%); 
+}
+
+label
+{
+	font-weight: bold;
+	color : white;
+	font-size: 20px;
+}
+
+label
+{
+	color : white;
+	font-size: 20px;
+}
+
+</style>
+
+<script>
+function insert(num)
+{
+	document.form.textview.value = document.form.textview.value + num;
+}
+
+function equal()
+{
+ var exp = document.form.textview.value;
+ if(exp)
+ {
+ document.form.textview.value = eval(exp);
+ }
+}
+
+function clean()
+{
+document.form.textview.value = "";
+}
+
+function back()
+{
+var exp = document.form.textview.value;
+document.form.textview.value = exp.substring(0,exp.length-1);	
+}
+
+function openBMI()
+{
+document.getElementById("main").style.display = 'none';
+document.getElementById("divbmi").style.display = 'block';
+document.getElementById("bmitheory").style.display = 'block';
+
+}
+function generalCalculator()
+{
+document.getElementById("main").style.display = 'block';
+document.getElementById("divbmi").style.display = 'none';
+document.getElementById("bmitheory").style.display = 'none';
+
+}
+function checkBMI()
+{
+	var weight = parseInt(document.getElementById('weight').value);
+	var height = parseInt(document.getElementById('height').value);
+	var bmi = (weight*10000)/(height*height);
+	document.getElementById('bmi').value = bmi;
+
+	if(bmi > 24.9)
+	alert("YOU ARE OVERWEIGHT. PLEASE CONTROL YOUR DIET.");
+	else if(bmi < 18.5)
+	alert("YOU ARE UNDERWEIGHT. PLEASE LOOK AFTER YOUR DIET.");	
+}
+</script>
+</head>
+
+<body>
+<div class = "main" id = "main" >
+<fieldset>
+<legend style="color : white"><b> GENERAL CALCULATOR </b></legend>
+<form name = "form">
+<input class= "textview" name = "textview" id="text"/>
+</form>
+ 
+<table>
+
+<tr>
+<td> <input type = "button" class = "button" value = "C" onclick = "clean()"> </td>
+<td> <input type = "button" class = "button"  value = "&#8592" onclick = "back()"> </td>
+<td> <input type = "button" class = "button"  value = "/"  onclick = "insert('/')"> </td>	
+<td> <input type = "button" class = "button"  value = "X"  onclick = "insert('X')"> </td>
+</tr>
+
+<tr>
+<td> <input type = "button" class = "button"  value = "7"  onclick = "insert(7)"> </td>
+<td> <input type = "button" class = "button"  value = "8"  onclick = "insert(8)"> </td>
+<td> <input type = "button" class = "button"  value = "9"  onclick = "insert(9)"> </td>	
+<td> <input type = "button" class = "button"  value = "-"  onclick = "insert('-')"> </td>
+</tr>
+
+<tr>
+<td> <input type = "button" class = "button"  value = "4"  onclick = "insert(4)"> </td>
+<td> <input type = "button" class = "button"  value = "5"  onclick = "insert(5)"> </td>
+<td> <input type = "button" class = "button"  value = "6"  onclick = "insert(6)"> </td>	
+<td> <input type = "button" class = "button"  value = "+"  onclick = "insert('+')"> </td>
+</tr>
+
+<tr>
+<td> <input type = "button" class = "button"  value = "1"  onclick = "insert(1)"> </td>
+<td> <input type = "button" class = "button"  value = "2"  onclick = "insert(2)"> </td>
+<td> <input type = "button" class = "button"  value = "3"  onclick = "insert(3)"> </td>	
+<td rowspan="2"> <input type = "button" class = "button"  value = "="  onclick = "equal()" style="height: 104px"> </td>
+</tr>
+
+<tr>
+<td colspan = "2" > <input type = "button" class = "button"  value = "0"  onclick = "insert(0)" style = "width: 105px"> </td>
+<td> <input type = "button" class = "button"  value = "."  onclick = "insert('.')"> </td>
+</tr>
+
+<tr>
+<td colspan="2" > <input type = "button" class = "button"  value = "B M I"  onclick = "openBMI()" style = "width: 105px; color : red"> </td>
+<td colspan="2" > <input type = "button" class = "button"  value = "S.C"  onclick = "" style = "width: 105px; color : blue"> </td>
+</tr>
+
+</table>
+</fieldset>
+</div>
+
+<div class = "divbmi" id = "divbmi" style =" display: none">
+<fieldset>
+<legend style="color : white"><b> B M I CALCULATOR </b></legend>
+<br>
+<label> WEIGHT (in KG) </label>
+<input type = "number" id = "weight" style="margin-left: 17px">
+
+<br><br>
+
+<label> HEIGHT (in CM) </label> 
+<input type = "number" id = "height" style="margin-left: 17px">
+
+<br><br>
+
+<label> B  M  I </label> 
+<input type = "text" id = "bmi"  readonly style="margin-left: 122px">
+
+<br><br>
+
+<input type = "button" class = "button"  value = "CHECK" onclick = "checkBMI()" style="width: 346px"> 
+
+<br><br>
+
+<input type = "button" class = "button"  value = "G.C"  onclick = "generalCalculator()"  style="width: 48%; color : red">	
+<input type = "button" class = "button"  value = "S.C"  onclick = ""  style="width: 48%; color : blue">
+</fieldset>
+
+</div>	
+
+<div class = "bmitheory" id = "bmitheory" style =" display: none">
+<label> BMI Categories: </laber>
+<p>
+<br>
+Underweight = <18.5 <br>
+Normal weight = 18.5–24.9 <br>
+Overweight = 25–29.9 <br>
+Obesity = BMI of 30 or greater <br>
+
+<br><br><br><br>
+
+</p>
+
+<a href = "https://www.nhlbi.nih.gov/health/educational/lose_wt/risk.htm" style = "color : white; text-shadow : 2px 2px 4px #000000 "> CLICK TO KNOW ABOUT BODY WEIGHTS </a> 
+
+</div>	
+</body>	
+</html>
